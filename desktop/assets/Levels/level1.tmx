@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="47" height="12" tilewidth="70" tileheight="70" nextobjectid="1">
+ <properties>
+  <property name="playerX" value="1"/>
+  <property name="playerY" value="1"/>
+ </properties>
+ <tileset firstgid="1" source="tilesheet.tsx"/>
+ <tileset firstgid="201" source="tilesheet.tsx"/>
+ <layer name="tilesLayer" width="47" height="12" offsetx="-92" offsety="-348">
+  <data encoding="base64" compression="zlib">
+   eJzVlksKwCAMRHOPaD/73v98zSwCg5QuJLbMg0FdGAI+VDezFumRLeIL1zlW1UQUQf/97yYmyTNQBH2rOpP+KwLflZ3xwnrXR3tAN11n4LuCM09n41brzGp2mucd+fYGj3POQWG4VhtyUpiZ/8ENRLcMtw==
+  </data>
+ </layer>
+</map>

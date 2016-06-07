@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="70" height="31" tilewidth="70" tileheight="70">
+ <tileset firstgid="1" source="tilesheet.tsx"/>
+ <tileset firstgid="201" source="tilesheet.tsx"/>
+ <layer name="tilesLayer" width="70" height="31">
+  <data encoding="base64" compression="zlib">
+   eJztmE0OgyAQhTlEd7W2SbceoJtaV01aL+H9T1FInAQIIwoOMzV8yYvxhx9f8AmclVKN1kWr1ToTnsORsg2szZTyFRfwqOIC46biAt9SxaXmSxiJ+fLh7oCSmS8SfKHOl2tCGQm+UOdLG1EICb5w5ssTuS7BF5gfcyDZlzpewnD+j/bwpfPKYdoK53xX8njhnO9ivkhAYr6Upgtcgz0iDvb25bGgrYyq7N7Z0rmdkxT1j5bs+5gv0taNpXhrDcg944u0deNWhoDWEPOFIl96gjr3JuYLxX/6CL5Q5Avmy5egrVQ48uUIvpTMlxxfXrNC+HOzaUV9kvLF+BLan7rPKglHvmD803dUct0oyZclTLbkjpeU9Udue2uUgxkrrYqvL3wNlsBbW71Kn8M0niZL0N9Qn3ydPGHP3SzBO5vjD2txNsk=
+  </data>
+ </layer>
+</map>
