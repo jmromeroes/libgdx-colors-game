@@ -14,20 +14,18 @@ public class Key extends GameEntity{
 	
 	public static final String MAIN = "hud_key_";
 	
-	private StaticState mainState;
-	
-	private PlayScreen playScreen;
-	
-	private Sound sound;
+	private final StaticState mainState;
+	private final PlayScreen playScreen;
+	private final Sound sound;
 	
 	public Key(PlayScreen playScreen, Cell cell){
+		super(false);
 		sound = Content.getInstance().getSound("stars");
 		this.playScreen = playScreen;
 		
 		setColor((String)cell.getTile().getProperties().get("color"));
 		
-		mainState = new StaticState(MAIN, this);
-		mainState.setSprite(MAIN+getColor());
+		mainState = new StaticState(MAIN, this, MAIN+getColor());
 		
 		try{
 			addEntityState(mainState);

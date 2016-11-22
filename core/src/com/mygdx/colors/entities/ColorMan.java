@@ -44,25 +44,25 @@ public class ColorMan extends GameEntity implements Gravitational{
 	public static final String FLAPPY = "flappy";
 	
 	//Going right information
-	private StaticState jumpingRightState;
-	private AnimatedState walkingRightState;
-	private StaticState restingRightState;
-	private StaticState hurtRightState;
+	private final StaticState jumpingRightState;
+	private final AnimatedState walkingRightState;
+	private final StaticState restingRightState;
+	private final StaticState hurtRightState;
 	
 	//Going left information
-	private StaticState jumpingLeftState;
-	private AnimatedState walkingLeftState;
-	private StaticState restingLeftState;
-	private StaticState hurtLeftState;
+	private final StaticState jumpingLeftState;
+	private final AnimatedState walkingLeftState;
+	private final StaticState restingLeftState;
+	private final StaticState hurtLeftState;
 	
 	//Front information
-	private StaticState frontState;
+	private final StaticState frontState;
 	
 	//Celebration information
-	private AnimatedState celebrationState;
+	private final AnimatedState celebrationState;
 	
 	//Flappy information
-	private StaticState flappyState;
+	private final StaticState flappyState;
 	
 	//Movement information
 	private float speed;
@@ -94,6 +94,8 @@ public class ColorMan extends GameEntity implements Gravitational{
 	private ArrayList<Heart> hearts;
 	
 	public ColorMan(GameScreen gameScreen){
+		super(false);
+
 		dieSound = Content.getInstance().getSound("explosion");
 		setFlappySound(Content.getInstance().getSound("flappy"));
 		
@@ -111,41 +113,22 @@ public class ColorMan extends GameEntity implements Gravitational{
 			hearts.add(heart);
 		}
 		
-		TextureAtlas textureAtlas = Content.getInstance().getTextureAtlas(GeneralInformation.MAIN_TEXTURE_ATLAS);
-		
 		//Flappy state
-		flappyState = new StaticState(FLAPPY, this);
-		flappyState.setSprite(FLAPPY);
+		flappyState = new StaticState(FLAPPY, this, FLAPPY);
 		
 		//Going right states
-		jumpingRightState = new StaticState(JUMP_RIGHT, this);
-		jumpingRightState.setSprite(JUMP_RIGHT);
+		jumpingRightState = new StaticState(JUMP_RIGHT, this, JUMP_RIGHT);
 		
 		walkingRightState = AnimatedStateFactory.getAnimatedState(this, WALK_RIGHT, WALK_RIGHT, 0.075f, true);
 		
-		restingRightState = new StaticState(REST_RIGHT, this);
-		restingRightState.setSprite(REST_RIGHT,1);
-		
-		hurtRightState = new StaticState(HURT_RIGHT, this);
-		hurtRightState.setSprite(HURT_RIGHT);
-		
-		frontState = new StaticState(FRONT, this);
-		frontState.setSprite(FRONT);
-		
-		//Going left states
-		jumpingLeftState = new StaticState(JUMP_LEFT, this);
-		jumpingLeftState.setSprite(JUMP_LEFT);
-		
-		walkingLeftState = AnimatedStateFactory.getAnimatedState(this, WALK_LEFT, WALK_LEFT, 0.075f, true);
-		
-		restingLeftState = new StaticState(REST_LEFT, this);
-		restingLeftState.setSprite(REST_LEFT,1);
-
-		hurtLeftState = new StaticState(HURT_LEFT, this);
-		hurtLeftState.setSprite(HURT_LEFT);
-		
-		
-		celebrationState = AnimatedStateFactory.getAnimatedState(this, CELEBRATION, CELEBRATION, 0.15f, true);
+		restingRightState = new StaticState(REST_RIGHT, this, REST_RIGHT,1);
+		hurtRightState    = new StaticState(HURT_RIGHT, this, HURT_RIGHT);
+		frontState        = new StaticState(FRONT, this, FRONT);
+		jumpingLeftState  = new StaticState(JUMP_LEFT, this, JUMP_LEFT);
+		walkingLeftState  = AnimatedStateFactory.getAnimatedState(this, WALK_LEFT, WALK_LEFT, 0.075f, true);
+		restingLeftState  = new StaticState(REST_LEFT, this, REST_LEFT, 1);
+		hurtLeftState     = new StaticState(HURT_LEFT, this, HURT_LEFT);
+		celebrationState  = AnimatedStateFactory.getAnimatedState(this, CELEBRATION, CELEBRATION, 0.15f, true);
 		
 		//Movement info
 		speed = 9.4f;
@@ -257,64 +240,32 @@ public class ColorMan extends GameEntity implements Gravitational{
 		return jumpingRightState;
 	}
 
-	public void setJumpingRightState(StaticState jumpingRightState) {
-		this.jumpingRightState = jumpingRightState;
-	}
-
 	public AnimatedState getWalkingRightState() {
 		return walkingRightState;
-	}
-
-	public void setWalkingRightState(AnimatedState walkingRightState) {
-		this.walkingRightState = walkingRightState;
 	}
 
 	public StaticState getRestingRightState() {
 		return restingRightState;
 	}
 
-	public void setRestingRightState(StaticState restingRightState) {
-		this.restingRightState = restingRightState;
-	}
-
 	public StaticState getHurtRightState() {
 		return hurtRightState;
-	}
-
-	public void setHurtRightState(StaticState hurtRightState) {
-		this.hurtRightState = hurtRightState;
 	}
 
 	public StaticState getJumpingLeftState() {
 		return jumpingLeftState;
 	}
 
-	public void setJumpingLeftState(StaticState jumpingLeftState) {
-		this.jumpingLeftState = jumpingLeftState;
-	}
-
 	public AnimatedState getWalkingLeftState() {
 		return walkingLeftState;
-	}
-
-	public void setWalkingLeftState(AnimatedState walkingLeftState) {
-		this.walkingLeftState = walkingLeftState;
 	}
 
 	public StaticState getRestingLeftState() {
 		return restingLeftState;
 	}
 
-	public void setRestingLeftState(StaticState restingLeftState) {
-		this.restingLeftState = restingLeftState;
-	}
-
 	public StaticState getHurtLeftState() {
 		return hurtLeftState;
-	}
-
-	public void setHurtLeftState(StaticState hurtLeftState) {
-		this.hurtLeftState = hurtLeftState;
 	}
 
 	public float getSpeed() {

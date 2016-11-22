@@ -16,21 +16,20 @@ public class Torch extends GameEntity{
 	public static final String LIT = "tochLit";
 	public static final String OFF = "off";
 	
-	private AnimatedState litState;
-	private StaticState offState;
-	
-	private PlayScreen playScreen;
-	
+	private final AnimatedState litState;
+	private final StaticState offState;
+	private final PlayScreen playScreen;
 	private Sound sound;
 	
 	public Torch(PlayScreen playScreen){
-		this.playScreen = playScreen;
+		super(false);
+		
+        this.playScreen = playScreen;
 		this.sound = Content.getInstance().getSound("levelCompleted");
 		
 		litState = AnimatedStateFactory.getAnimatedState(this, LIT, LIT, 0.1f, true);
 		
-		offState = new StaticState(OFF, this);
-		offState.setSprite(LIT, 1);
+		offState = new StaticState(OFF, this, LIT, 1);
 		
 		try{
 			addEntityState(litState);

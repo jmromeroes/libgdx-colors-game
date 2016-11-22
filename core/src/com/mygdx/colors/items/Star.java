@@ -13,17 +13,17 @@ import com.mygdx.colors.utils.Content;
 public class Star extends GameEntity{
 	public static final String MAIN_STATE = "star"; 
 	
-	private StaticState starState;
-	private PlayScreen playScreen;
-	
-	private Sound sound;
+	private final StaticState starState;
+	private final PlayScreen playScreen;
+	private final Sound sound;
 	
 	public Star(PlayScreen playScreen){
+		super(false);
 		sound = Content.getInstance().getSound("stars");
 		this.playScreen = playScreen;
 		
-		starState = new StaticState(MAIN_STATE,this);
-		starState.setSprite("star");
+		starState = new StaticState(MAIN_STATE, this, "star");
+
 		try{
 			addEntityState(starState);
 		}catch(ResourceRepeatedInMapException exception){

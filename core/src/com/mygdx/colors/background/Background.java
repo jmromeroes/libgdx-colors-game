@@ -1,29 +1,24 @@
 package com.mygdx.colors.background;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.colors.screens.GameScreen;
-import com.mygdx.colors.screens.PlayScreen;
 import com.mygdx.colors.utils.Content;
-import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
-public class Background{
+public class Background {
 	
-	private Texture backgroundImage;
+	private final Texture backgroundImage;
 	
 	private float posX, posY;
 	private float dx, dy;
 	
-	private GameScreen gameScreen;
+	private final GameScreen gameScreen;
 	
-	private float width, height;
+	private final float width, height;
 	
 	private int referenceHeight, referenceWidth;
 	
-	private float movementScale;
+	private final float movementScale;
 	
 	private boolean goingRight;
 	
@@ -85,7 +80,7 @@ public class Background{
 	
 	public void render(SpriteBatch spriteBatch){
 		spriteBatch.draw(backgroundImage, posX, posY, width, height);
-		spriteBatch.draw(backgroundImage, posX+getWidth(), getHeight()+posY, width, height);
+        spriteBatch.draw(backgroundImage, posX+getWidth(), getHeight()+posY, width, height);
 		spriteBatch.draw(backgroundImage, posX+getWidth(), posY, width, height);
 		spriteBatch.draw(backgroundImage, posX, posY+getHeight(), width, height);
 	}
@@ -94,18 +89,10 @@ public class Background{
 		backgroundImage.dispose();
 	}
 	
-	public void setWidth(float width){
-		this.width = width;
-	}
-
 	public float getWidth(){
 		return width;
 	}
 	
-	public void setHeight(float height){
-		this.height = height;
-	}
-
 	public float getHeight(){
 		return height;
 	}
@@ -125,4 +112,5 @@ public class Background{
 	public void setY(float posY){
 		this.posY = posY;
 	}
+
 }

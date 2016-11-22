@@ -28,12 +28,12 @@ public class HappyEnemy extends GameEntity{
 	private float timeHidden;
 	
 	public HappyEnemy(PlayScreen playScreen){
+		super(false);
 		this.goingTransparent = false;
 		
 		this.playScreen = playScreen;
 		
-		mainState = new StaticState(MAIN, this);
-		mainState.setSprite(MAIN);
+		mainState = new StaticState(MAIN, this, MAIN);
 		
 		timeHidden = 0.0f;
 		try{

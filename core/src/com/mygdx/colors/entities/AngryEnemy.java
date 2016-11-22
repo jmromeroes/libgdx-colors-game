@@ -13,8 +13,8 @@ import com.mygdx.colors.utils.GeneralInformation;
 public class AngryEnemy extends GameEntity{
 	public static final String MAIN = "angry_madBlock";
 	
-	private StaticState mainState;
-	private Sound collisioningSound;
+	private final StaticState mainState;
+	private final Sound collisioningSound;
 	
 	private boolean goingUp;
 	
@@ -22,18 +22,18 @@ public class AngryEnemy extends GameEntity{
 	
 	private Vector2 initialPosition;
 	
-	private PlayScreen playScreen;
+	private final PlayScreen playScreen;
 	
 	public AngryEnemy(PlayScreen playScreen){
+		super(false);
 		this.goingUp = false;
 		
 		this.playScreen = playScreen;
 		
 		collisioningSound = Content.getInstance().getSound("collision");
 		
-		mainState = new StaticState(MAIN, this);
-		mainState.setSprite(MAIN);
-		
+		mainState = new StaticState(MAIN, this, MAIN);
+
 		try{
 			addEntityState(mainState);
 		}catch(ResourceRepeatedInMapException exception){

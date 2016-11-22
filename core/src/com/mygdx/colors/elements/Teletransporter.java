@@ -12,29 +12,36 @@ import com.mygdx.colors.utils.GeneralInformation;
 
 public class Teletransporter extends GameEntity{
 	public static final String MAIN = "transporter_";
-	private PlayScreen playScreen;
+	private final PlayScreen playScreen;
+	private final StaticState mainState;
+	private final StaticState onState;
 	
-	private StaticState mainState;
-	private StaticState onState;
+	private final String direction;
 	
-	private String direction;
-	
-	private int coordX, coordY;
+	private final int coordX, coordY;
 	
 	public Teletransporter(PlayScreen playScreen, Cell cell, int coordX, int coordY){
+		super(true);
+        
 		setColor((String)cell.getTile().getProperties().get("color"));
-		setDirection((String)cell.getTile().getProperties().get("direction"));
+		direction = (String)cell.getTile().getProperties().get("direction");
 		
-		this.coordX = coordX;
-		this.coordY = coordY;
-		
+		this.coordX     = coordX;
+		this.coordY     = coordY;
 		this.playScreen = playScreen;
 		
-		mainState = new StaticState(MAIN, this);
-		mainState.setSprite(MAIN+getDirection()+"_"+getColor());
-		
-		onState = new StaticState(GeneralInformation.ON, this);
-		onState.setSprite(MAIN+getDirection()+"_"+getColor()+"_"+GeneralInformation.ON);
+		mainState = 
+			new StaticState(
+				MAIN, 
+				this, 
+				MAIN+getDirection()+"_"+getColor()
+			);
+		onState = 
+			new StaticState(
+				GeneralInformation.ON, 
+				this, 
+				MAIN+getDirection()+"_"+getColor()+"_"+GeneralInformation.ON
+			);
 		
 		try{
 			addEntityState(mainState);

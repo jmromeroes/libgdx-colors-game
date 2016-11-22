@@ -12,9 +12,9 @@ public class HillEnemy extends GameEntity{
 	
 	public static final String MAIN = "hillEnemy";
 	
-	private StaticState mainState;
+	private final StaticState mainState;
 	
-	private Sound collisioningSound;
+	private final Sound collisioningSound;
 	
 	private boolean goingUp;
 	private boolean goingDown;
@@ -27,13 +27,15 @@ public class HillEnemy extends GameEntity{
 	private PlayScreen playScreen;
 	
 	public HillEnemy(PlayScreen playScreen, Cell cell){
+		super(false);
+
 		this.playScreen = playScreen;
 		
 		collisioningSound = Content.getInstance().getSound("collision");
 		this.speed = 5f;
 		
-		mainState = new StaticState(MAIN, this);
-		mainState.setSprite(MAIN);
+		mainState = new StaticState(MAIN, this, MAIN);
+		mainState.setSprite();
 		
 		goingDown = false;
 		goingUp = false;

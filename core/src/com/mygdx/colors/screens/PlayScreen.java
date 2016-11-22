@@ -397,12 +397,10 @@ public class PlayScreen extends GameScreen{
 				if(cell.getTile().getProperties().get("type").equals(EXPLODABLE_TILE)){
 					RegularTile explodableTile= new RegularTile(cell);
 					explodableTile.setPosition(initialMapX+col*tileSize, row*tileSize);
-					explodableTile.setActivableByColor(true);
 					gameEntitiesArray[row][col]=explodableTile;
 				}else if(cell.getTile().getProperties().get("type").equals(DIRECTION_TILE)){
 					DirectionTile directionTile = new DirectionTile(cell);
 					directionTile.setPosition(initialMapX+col*tileSize, row*tileSize);
-					directionTile.setActivableByColor(true);
 					gameEntitiesArray[row][col]=directionTile;
 				}else if(cell.getTile().getProperties().get("type").equals(STAR)){
 					Star star = new Star(this);
@@ -419,7 +417,6 @@ public class PlayScreen extends GameScreen{
 				}else if(cell.getTile().getProperties().get("type").equals(LOCK)){
 					Lock lock = new Lock(this, cell, col, row);
 					lock.setPosition(initialMapX+col*tileSize, row*tileSize);
-					lock.setActivableByColor(true);
 					gameEntitiesArray[row][col]=lock;
 				}else if(cell.getTile().getProperties().get("type").equals(SPIKES)){
 					Spike spikes = new Spike();
@@ -428,17 +425,14 @@ public class PlayScreen extends GameScreen{
 				}else if(cell.getTile().getProperties().get("type").equals(GRAVITATIONAL_SWITCH)){
 					GravitySwitch gravitationalSwitch = new GravitySwitch(cell);
 					gravitationalSwitch.setPosition(initialMapX+col*tileSize, row*tileSize);
-					gravitationalSwitch.setActivableByColor(true);;
 					gameEntitiesArray[row][col]=gravitationalSwitch;
 				}else if(cell.getTile().getProperties().get("type").equals(STATION)){
 					Station station = new Station(cell);
 					station.setPosition(initialMapX+col*tileSize, row*tileSize);
-					station.setActivableByColor(true);;
 					gameEntitiesArray[row][col]=station;
 				}else if(cell.getTile().getProperties().get("type").equals(ACCELERATION_PIT)){
 					AccelerationPit accelerationPit = new AccelerationPit(cell);
 					accelerationPit.setPosition(initialMapX+col*tileSize, row*tileSize);
-					accelerationPit.setActivableByColor(true);;
 					gameEntitiesArray[row][col]=accelerationPit;
 				}else if(cell.getTile().getProperties().get("type").equals(SQUARED_ENEMY)){
 					String color = (String)cell.getTile().getProperties().get("color");
@@ -466,17 +460,14 @@ public class PlayScreen extends GameScreen{
 				}else if(cell.getTile().getProperties().get("type").equals(BOMB)){
 					BombTile bomb = new BombTile(this,cell);
 					bomb.setPosition(initialMapX+col*tileSize, row*tileSize);
-					bomb.setActivableByColor(true);;
 					gameEntitiesArray[row][col]=bomb;
 				}else if(cell.getTile().getProperties().get("type").equals(FLAPPY_TILE)){
 					FlappyTile flappyTile = new FlappyTile(cell);
 					flappyTile.setPosition(initialMapX+col*tileSize, row*tileSize);
-					flappyTile.setActivableByColor(true);;
 					gameEntitiesArray[row][col]=flappyTile;
 				}else if(cell.getTile().getProperties().get("type").equals(TELETRANSPORTER)){
 					Teletransporter teletransporter = new Teletransporter(this,cell, col, row);
 					teletransporter.setPosition(initialMapX+col*tileSize, row*tileSize);
-					teletransporter.setActivableByColor(true);;
 					gameEntitiesArray[row][col]=teletransporter;
 				}
 			}

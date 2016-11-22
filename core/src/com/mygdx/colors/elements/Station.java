@@ -15,33 +15,39 @@ public class Station extends GameEntity{
 	public static final String PLAY = "station_play_";
 	public static final String STOP = "station_stop_";
 	
-	private StaticState playState;
-	private StaticState playStateOn;
+	private final StaticState playState;
+	private final StaticState playStateOn;
 	
-	private StaticState stopState;
-	private StaticState stopStateOn;
+	private final StaticState stopState;
+	private final StaticState stopStateOn;
 	
-	private Sound sound;
+	private final Sound sound;
 	
 	private float dx;
 	
 	public Station(Cell cell){
-		sound = Content.getInstance().getSound("station");
+		super(true);
+        sound = Content.getInstance().getSound("station");
 		
 		setColor((String)cell.getTile().getProperties().get("color"));
 		
-		playState = new StaticState(PLAY, this);
-		playState.setSprite(PLAY+getColor()); 		
+		playState   = new StaticState(PLAY, this, PLAY + getColor());
+		playStateOn = 
+			new StaticState(
+				PLAY + GeneralInformation.ON, 
+				this,
+				PLAY + getColor() + "_" + GeneralInformation.ON
+			);
 		
-		playStateOn = new StaticState(PLAY+GeneralInformation.ON, this);
-		playStateOn.setSprite(PLAY+getColor()+"_"+GeneralInformation.ON);
+		stopState = new StaticState(STOP, this, STOP + getColor());
 		
-		stopState = new StaticState(STOP, this);
-		stopState.setSprite(STOP+getColor());
-		
-		stopStateOn = new StaticState(STOP+GeneralInformation.ON, this);
-		stopStateOn.setSprite(STOP+getColor()+"_"+GeneralInformation.ON);
-		
+		stopStateOn = 
+			new StaticState(
+				STOP + GeneralInformation.ON, 
+				this, 
+				STOP+getColor()+"_"+GeneralInformation.ON
+			);
+
 		try{
 			addEntityState(playState);
 			addEntityState(playStateOn);

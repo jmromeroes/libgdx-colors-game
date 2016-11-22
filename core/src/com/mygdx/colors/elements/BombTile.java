@@ -13,20 +13,27 @@ import com.mygdx.colors.utils.GeneralInformation;
 public class BombTile extends GameEntity{
 	
 	public static final String MAIN = "_bomb";
-	private PlayScreen playScreen;
-	
-	private StaticState mainState;
-	private StaticState onState;
+	private final PlayScreen playScreen;
+	private final StaticState mainState;
+	private final StaticState onState;
 	
 	public BombTile(PlayScreen playScreen, Cell cell){
-		setColor((String)cell.getTile().getProperties().get("color"));
+		super(true);
+        setColor((String)cell.getTile().getProperties().get("color"));
 		this.playScreen = playScreen;
 		
-		mainState = new StaticState(MAIN, this);
-		mainState.setSprite("tile_"+getColor()+MAIN);
-		
-		onState = new StaticState(GeneralInformation.ON, this);
-		onState.setSprite("tile_"+getColor()+MAIN+"_"+GeneralInformation.ON);
+		mainState = 
+			new StaticState(
+				MAIN, 
+				this, 
+				"tile_"+getColor()+MAIN
+			);
+		onState = 
+			new StaticState(
+			    GeneralInformation.ON, 
+			    this, 
+			    "tile_"+getColor()+MAIN+"_"+GeneralInformation.ON
+		    );
 		
 		try{
 			addEntityState(mainState);

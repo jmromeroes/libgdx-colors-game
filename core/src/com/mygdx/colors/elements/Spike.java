@@ -8,11 +8,11 @@ public class Spike extends GameEntity{
 	
 	public static final String MAIN = "spikes";
 	
-	private StaticState mainState;
+	private final StaticState mainState;
 	
 	public Spike(){
-		mainState = new StaticState(MAIN, this);
-		mainState.setSprite(MAIN);
+		super(false);
+        mainState = new StaticState(MAIN, this, MAIN);
 		
 		try{
 			addEntityState(mainState);

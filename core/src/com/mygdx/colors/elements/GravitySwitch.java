@@ -14,27 +14,36 @@ public class GravitySwitch extends GameEntity{
 	
 	public static final String MAIN = "gravity_switch_";
 	
-	private StaticState mainState;
-	private StaticState onState;
+	private final StaticState mainState;
+	private final StaticState onState;
 	
-	private Sound sound;
+	private final Sound sound;
 	
-	private String direction;
+	private final String direction;
 	
 	public GravitySwitch(Cell cell){
-		sound  = Content.getInstance().getSound("subgravity");
+		super(true);
+        sound  = Content.getInstance().getSound("subgravity");
 		
 		setColor((String)cell.getTile().getProperties().get("color"));
-		setDirection((String)cell.getTile().getProperties().get("direction"));
+		direction = (String)cell.getTile()
+				                .getProperties()
+				                .get("direction");
 		
-		mainState = new StaticState(MAIN, this);
-		mainState.setSprite(getDirection()!=null?MAIN+getColor()+"_"+getDirection():
-							MAIN+getColor());
+		mainState = 
+			new StaticState(
+				MAIN, 
+				this, 
+				getDirection()!=null?MAIN+getColor()+"_"+getDirection():MAIN+getColor()
+			);
 		
-		onState = new StaticState(GeneralInformation.ON, this);
-		onState.setSprite(getDirection()!=null?MAIN+getColor()+"_"
-						  +getDirection()+"_"+GeneralInformation.ON
-				         :MAIN+getColor()+"_"+GeneralInformation.ON);
+		onState = 
+			new StaticState(
+				GeneralInformation.ON, 
+				this,
+				getDirection()!= null? MAIN+getColor()+"_"+getDirection()+"_"+GeneralInformation.ON
+				                      :MAIN+getColor()+"_"+GeneralInformation.ON
+			);
 		
 		try{
 			addEntityState(mainState);
@@ -76,7 +85,4 @@ public class GravitySwitch extends GameEntity{
 		return direction;
 	}
 
-	public void setDirection(String direction) {
-		this.direction = direction;
-	}
 }

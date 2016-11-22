@@ -13,23 +13,31 @@ import com.mygdx.colors.utils.GeneralInformation;
 
 public class AccelerationPit extends GameEntity{
 	
-	private StaticState offState;
-	private StaticState onState;
+	private final StaticState offState;
+	private final StaticState onState;
 	
-	private String direction;
+	private final String direction;
 	
 	private Sound sound;
 	public AccelerationPit(Cell cell){
+		super(true);
 		sound  = Content.getInstance().getSound("acceleration");
 		
-		this.setDirection((String)cell.getTile().getProperties().get("direction"));
+		direction = (String)cell.getTile().getProperties().get("direction");
 		setColor((String)cell.getTile().getProperties().get("color"));
 		
-		offState = new StaticState(GeneralInformation.OFF,this);
-		offState.setSprite(getDirection()+"_"+getColor());
-		
-		onState = new StaticState(GeneralInformation.ON,this);
-		onState.setSprite(getDirection()+"_"+getColor()+"_"+GeneralInformation.ON);
+		offState = 
+		    new StaticState(
+				GeneralInformation.OFF, 
+				this, 
+				getDirection()+"_"+getColor()
+			);
+		onState = 
+			new StaticState(
+				GeneralInformation.ON, 
+				this, 
+				getDirection()+"_"+getColor()+"_"+GeneralInformation.ON
+			);
 		
 		try{
 			addEntityState(offState);
@@ -64,7 +72,4 @@ public class AccelerationPit extends GameEntity{
 		return direction;
 	}
 
-	public void setDirection(String direction) {
-		this.direction = direction;
-	}
 }

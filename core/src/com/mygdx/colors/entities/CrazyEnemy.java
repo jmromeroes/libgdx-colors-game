@@ -11,8 +11,8 @@ import com.mygdx.colors.utils.GeneralInformation;
 public class CrazyEnemy extends GameEntity{
 	public static final String MAIN = "mad_madBlock";
 	
-	private StaticState mainState;
-	private Sound collisioningSound;
+	private final StaticState mainState;
+	private final Sound collisioningSound;
 	
 	private boolean goingRight;
 	
@@ -22,9 +22,11 @@ public class CrazyEnemy extends GameEntity{
 	
 	private int Xindex, Yindex;
 	
-	private PlayScreen playScreen;
+	private final PlayScreen playScreen;
 	
 	public CrazyEnemy(PlayScreen playScreen){
+		super(false);
+
 		this.goingRight = true;
 		
 		this.playScreen = playScreen;
@@ -33,8 +35,7 @@ public class CrazyEnemy extends GameEntity{
 		this.speed = 11f;
 		setDx(speed);
 		
-		mainState = new StaticState(MAIN, this);
-		mainState.setSprite(MAIN);
+		mainState = new StaticState(MAIN, this, MAIN);
 		
 		try{
 			addEntityState(mainState);

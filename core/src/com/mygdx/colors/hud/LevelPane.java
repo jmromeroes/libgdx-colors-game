@@ -39,12 +39,12 @@ public class LevelPane extends GameEntity{
 	private Sound sound;
 	
 	public LevelPane(ColorsGame game, float posX, float posY){
+		super(false);
 		posIn = new Vector2(posX, posY);
 		positionToGo = posIn;
 		
 		this.sound = Content.getInstance().getSound("beep");
-		
-		this.game = game;
+		this.game  = game;
 		this.speed = 40;
 		
 		Random random = new Random();
@@ -73,8 +73,7 @@ public class LevelPane extends GameEntity{
 		goingDown = false;
 		withPointToGo = true;
 		
-		paneState = new StaticState(MAIN, this);
-		paneState.setSprite(MAIN);
+		paneState = new StaticState(MAIN, this, MAIN);
 		
 		try{
 			addEntityState(paneState);

@@ -8,12 +8,12 @@ import com.mygdx.colors.entities.GameEntity;
 
 public class Explosion extends GameEntity{
 	
-	private ArrayList<Particle> particles;
-	private Random random;
+	private final ArrayList<Particle> particles;
+	private final Random random;
 	private boolean isExtinct;
 	
 	public Explosion(float posX, float posY, String particleTextureName, int numberOfParticles){
-		
+		super(false);
 		particles = new ArrayList<Particle>();
 		
 		random = new Random();

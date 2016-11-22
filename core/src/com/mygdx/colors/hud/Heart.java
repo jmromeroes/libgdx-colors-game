@@ -16,9 +16,9 @@ public class Heart extends GameEntity{
 	private float posX, posY;
 	
 	public Heart(GameScreen gameScreen, float posX, float posY){
+		super(false);
 		this.gameScreen = gameScreen;
-		mainState = new StaticState(MAIN, this);
-		mainState.setSprite(MAIN);
+		mainState = new StaticState(MAIN, this, MAIN);
 	
 		this.posX = posX;
 		this.posY = posY;

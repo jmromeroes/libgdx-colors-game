@@ -12,17 +12,26 @@ import com.mygdx.colors.utils.GeneralInformation;
 
 public class RegularTile extends GameEntity{
 	
-	private StaticState offState;
-	private StaticState onState;
+	private final StaticState offState;
+	private final StaticState onState;
 	
 	public RegularTile(Cell cell){
-		offState = new StaticState(GeneralInformation.OFF, this);
-		onState = new StaticState(GeneralInformation.ON, this);
-		
+		super(true);
+
 		setColor((String)cell.getTile().getProperties().get("color"));
-		
-		offState.setSprite("tile_"+getColor());
-		onState.setSprite("tile_"+getColor()+"_"+GeneralInformation.ON);
+
+		offState = 
+			new StaticState(
+				GeneralInformation.OFF, 
+				this, 
+				"tile_"+getColor()
+			);
+		onState = 
+			new StaticState(
+				GeneralInformation.ON, 
+				this, 
+				"tile_"+getColor()+"_"+GeneralInformation.ON
+			);
 		
 		try{
 			addEntityState(offState);
@@ -30,7 +39,9 @@ public class RegularTile extends GameEntity{
 		}catch(ResourceRepeatedInMapException exception){
 			exception.printStackTrace();
 		}
+
 		setCurrentState(GeneralInformation.OFF);
+	
 	}
 
 	@Override

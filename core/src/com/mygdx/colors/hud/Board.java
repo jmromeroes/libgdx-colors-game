@@ -15,10 +15,15 @@ public abstract class Board extends GameEntity{
 	private GameScreen gameScreen;
 	
 	public Board(GameScreen gameScreen){
+		super(false);
 		this.setGameScreen(gameScreen);
 		
-		mainState = new StaticState(MAIN, this);
-		mainState.setSprite(new Sprite(Content.getInstance().getTexture("board")));
+		mainState = 
+			new StaticState(
+				MAIN, 
+				this, 
+				new Sprite(Content.getInstance().getTexture("board"))
+			);
 		
 		try{
 			addEntityState(mainState);

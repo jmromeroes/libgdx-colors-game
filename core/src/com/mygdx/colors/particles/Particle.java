@@ -26,10 +26,17 @@ public class Particle extends GameEntity{
 	public static final String MAIN_STATE = "main";
 	
 	public Particle(String textureName){
+		super(false);
 		this.setExtinct(false);
 		
-		mainState = new StaticState(MAIN_STATE, this);
-		mainState.setSprite(Content.getInstance().getTextureAtlas(GeneralInformation.MAIN_TEXTURE_ATLAS).createSprite(textureName));
+		mainState = 
+			new StaticState(
+				MAIN_STATE, 
+				this,
+				Content.getInstance()
+				       .getTextureAtlas(GeneralInformation.MAIN_TEXTURE_ATLAS)
+				       .createSprite(textureName)
+			);
 		
 		try{
 			addEntityState(mainState);

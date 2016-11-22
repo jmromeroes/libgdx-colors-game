@@ -13,8 +13,8 @@ import com.mygdx.colors.utils.GeneralInformation;
 public class SadEnemy extends GameEntity{
 	public static final String MAIN = "sad_madBlock";
 	
-	private StaticState mainState;
-	private Sound collisioningSound;
+	private final StaticState mainState;
+	private final Sound collisioningSound;
 	
 	private boolean goingUp;
 	private boolean goingRight;
@@ -28,6 +28,8 @@ public class SadEnemy extends GameEntity{
 	private PlayScreen playScreen;
 	
 	public SadEnemy(PlayScreen playScreen){
+		super(false);
+
 		this.goingUp = false;
 		this.goingRight = true;
 		
@@ -36,8 +38,7 @@ public class SadEnemy extends GameEntity{
 		collisioningSound = Content.getInstance().getSound("collision");
 		this.speed = 5f;
 		
-		mainState = new StaticState(MAIN, this);
-		mainState.setSprite(MAIN);
+		mainState = new StaticState(MAIN, this, MAIN);
 		
 		try{
 			addEntityState(mainState);

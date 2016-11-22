@@ -7,26 +7,28 @@ import com.mygdx.colors.utils.GeneralInformation;
 
 public class StaticState extends EntityState{
 	
-	private Sprite sprite;
+	private final Sprite sprite;
 	
-	public StaticState(String name, GameEntity gameEntity){
+	public StaticState(String name, GameEntity gameEntity, Sprite sprite){
 		super(name, gameEntity);
-	}
-
-	public void setSprite(Sprite sprite){
+		
 		this.sprite = sprite;
 	}
-	
-	public void setSprite(String spriteName, int index){
+
+	public StaticState(String name, GameEntity gameEntity, String spriteName, int index){
+		super(name, gameEntity);
+		
 		this.sprite = Content.getInstance().getTextureAtlas(GeneralInformation.MAIN_TEXTURE_ATLAS)
-				                           .createSprite(spriteName, index);
+                .createSprite(spriteName, index);
 	}
-	
-	public void setSprite(String spriteName){
+
+	public StaticState(String name, GameEntity gameEntity, String spriteName){
+		super(name, gameEntity);
+		
 		this.sprite = Content.getInstance().getTextureAtlas(GeneralInformation.MAIN_TEXTURE_ATLAS)
-				                           .createSprite(spriteName);
+                .createSprite(spriteName);
 	}
-	
+
 	@Override
 	public Sprite getSprite(){
 		return sprite;
@@ -34,11 +36,6 @@ public class StaticState extends EntityState{
 
 	@Override
 	public void update(float delta){
-	}
-	
-	@Override
-	public boolean isFinished(){
-		return false;
 	}
 	
 	@Override

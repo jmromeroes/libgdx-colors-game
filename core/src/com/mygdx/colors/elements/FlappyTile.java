@@ -13,17 +13,26 @@ import com.mygdx.colors.utils.GeneralInformation;
 public class FlappyTile extends GameEntity{
 	public static final String MAIN = "flappy_tile_";
 	
-	private StaticState mainState;
-	private StaticState onState;
+	private final StaticState mainState;
+	private final StaticState onState;
 	
 	public FlappyTile(Cell cell){
-		setColor((String)cell.getTile().getProperties().get("color"));
+		super(true);
+        setColor((String)cell.getTile().getProperties().get("color"));
 		
-		mainState = new StaticState(MAIN, this);
-		mainState.setSprite(MAIN+getColor());
+		mainState = 
+			new StaticState(
+				MAIN, 
+				this, 
+				MAIN+getColor()
+			);
 		
-		onState = new StaticState(GeneralInformation.ON, this);
-		onState.setSprite(MAIN+getColor()+"_"+GeneralInformation.ON);
+		onState = 
+			new StaticState(
+				GeneralInformation.ON, 
+				this, 
+				MAIN+getColor()+"_"+GeneralInformation.ON
+			);
 		
 		try{
 			addEntityState(mainState);

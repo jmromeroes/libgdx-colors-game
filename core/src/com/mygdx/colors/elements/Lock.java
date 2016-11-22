@@ -15,18 +15,16 @@ public class Lock extends GameEntity{
 	
 	public static final String MAIN = "lock_";
 	
-	private StaticState mainState;
-	private StaticState onState;
-	
-	private PlayScreen playScreen;
-	
-	private int colInMap;
-	private int rowInMap;
-	
-	private Sound sound;
-	
+	private final StaticState mainState;
+	private final StaticState onState;
+	private final PlayScreen playScreen;
+	private final int colInMap;
+	private final int rowInMap;
+	private final Sound sound;
+
 	public Lock(PlayScreen playScreen, Cell cell, int colInMap, int rowInMap){
-		sound = Content.getInstance().getSound("station");
+		super(true);
+        sound = Content.getInstance().getSound("station");
 		
 		this.playScreen = playScreen;
 		this.colInMap = colInMap;
@@ -34,12 +32,19 @@ public class Lock extends GameEntity{
 		
 		setColor((String)cell.getTile().getProperties().get("color"));
 		
-		mainState = new StaticState(MAIN, this);
-		mainState.setSprite(MAIN+getColor());
-		
-		onState = new StaticState(GeneralInformation.ON, this);
-		onState.setSprite(MAIN+getColor()+"_"+GeneralInformation.ON);
-		
+		mainState = 
+			new StaticState(
+				MAIN, 
+				this, 
+				MAIN+getColor()
+			);
+		onState =
+		    new StaticState(
+		    	GeneralInformation.ON, 
+		    	this, 
+		    	MAIN+getColor()+"_"+GeneralInformation.ON
+		    );
+
 		try{
 			addEntityState(mainState);
 			addEntityState(onState);

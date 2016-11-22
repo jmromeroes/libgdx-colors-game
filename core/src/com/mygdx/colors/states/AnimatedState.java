@@ -6,20 +6,18 @@ import com.mygdx.colors.utils.Animation;
 
 public class AnimatedState extends EntityState{
 		
-	private Animation stateAnimation;
-	private boolean isLoop;
+	private final Animation stateAnimation;
+	private final boolean isLoop;
 	private boolean isFinished;
 	private Sprite currentSprite;
 	
-	public AnimatedState(String name,GameEntity entity){
+	public AnimatedState(String name, GameEntity entity, Animation stateAnimation, boolean isLoop){
 		super(name, entity);
-		this.isFinished = false;
+		this.isFinished     = false;
+		this.stateAnimation = stateAnimation;
+		this.isLoop         = isLoop;
 	}	
 
-	public void setStateAnimation(Animation stateAnimation){
-		this.stateAnimation = stateAnimation;
-	}
-	
 	public Animation getStateAnimation(){
 		return stateAnimation;
 	}
@@ -40,19 +38,15 @@ public class AnimatedState extends EntityState{
 		return isLoop;
 	}
 
-	public void setLoop(boolean isLoop) {
-		this.isLoop = isLoop;
-	}
-	
 	public boolean isFinished(){
 		return isFinished;
 	}
 	
-	public void setFinished(boolean isFinished){
-		this.isFinished = isFinished;
-	}
-	
 	public void restart(){
 		stateAnimation.restart();
+	}
+
+	@Override
+	public void setFinished(boolean isFinished) {
 	}
 }

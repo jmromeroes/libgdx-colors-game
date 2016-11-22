@@ -6,11 +6,11 @@ import com.mygdx.colors.entities.GameEntity;
 
 public abstract class EntityState{
 	
-	private GameEntity entity;
-	private String name;
+	private final GameEntity entity;
+	private final String name;
 	
 	public EntityState(String name, GameEntity entity){
-		this.setEntity(entity);
+		this.entity = entity;
 		this.name = name;
 	}
 
@@ -18,10 +18,6 @@ public abstract class EntityState{
 		return entity;
 	}
 
-	public void setEntity(GameEntity entity) {
-		this.entity = entity;
-	}
-	
 	public void render(SpriteBatch spriteBatch){
 		Sprite currentSprite = getSprite();
 		
@@ -34,13 +30,7 @@ public abstract class EntityState{
 		return this.name;
 	}
 	
-	public void setName(String name){
-		this.name = name;
-	}
-	
-	public abstract boolean isFinished();
 	public abstract void setFinished(boolean isFinished);
-	
 	public abstract void update(float delta);
 	public abstract Sprite getSprite();
 	

@@ -13,21 +13,21 @@ import com.mygdx.colors.screens.PlayScreen;
 import com.mygdx.colors.screens.PreloadScreen;
 import com.mygdx.colors.utils.BoundedCamera;
 
-public class ColorsGame extends Game{
-	private HashMap <Integer, GameScreen>screensMap;
+public class ColorsGame extends Game {
 	
+	private final HashMap <Integer, GameScreen>screensMap = new HashMap<Integer, GameScreen>();
 	private SpriteBatch batch;
-	private BoundedCamera camera;
+	private final BoundedCamera camera = new BoundedCamera();
 	
 	public static final String TITLE = "COLORS GAME";
 	private float ASPECT_RATIO;
-	private float V_WIDTH, V_HEIGHT;
+	private float V_WIDTH;
+    private float V_HEIGHT;
 	
 	public static final int PRELOAD_SCREEN = 0;
 	public static final int MENU_SCREEN = 1;
 	public static final int GAME_SCREEN = 2;
 	public static final int LEVEL_SELECTION_SCREEN = 3;
-	
 	
 	private GameScreen playScreen; 
 	private GameScreen menuScreen;
@@ -38,26 +38,19 @@ public class ColorsGame extends Game{
 	
 	@Override
 	public void create() {
+		
 		batch = new SpriteBatch();
-		
 		soundEnabled = true;
-
-		screensMap = new HashMap<Integer, GameScreen>();
-		
-		ASPECT_RATIO = (float)Gdx.graphics.getHeight()/Gdx.graphics.getWidth();
-		V_WIDTH = 1350;
-		setVHeight(V_WIDTH*ASPECT_RATIO);
-		
-		camera = new BoundedCamera();
-		
-		setBatch(batch);
-		
+        
 		//Screen creation
-		preloadScreen = new PreloadScreen(this);
-		menuScreen = new MenuScreen(this);
-		playScreen = new PlayScreen(this);
+		preloadScreen        = new PreloadScreen(this);
+		menuScreen           = new MenuScreen(this);
+		playScreen           = new PlayScreen(this);
 		levelSelectionScreen = new LevelSelectionScreen(this);
 		
+		ASPECT_RATIO   = (float)Gdx.graphics.getHeight()/Gdx.graphics.getWidth();
+		V_WIDTH        = 1350F;
+		V_HEIGHT = V_WIDTH*ASPECT_RATIO;
 		
 		//We add screens to screen map
 		screensMap.put(PRELOAD_SCREEN, preloadScreen);
@@ -70,9 +63,9 @@ public class ColorsGame extends Game{
 
 	@Override
 	public void render () {
+
 		Gdx.gl.glClearColor(0/255f, 0/255f, 0/255f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
 		
 		batch.setProjectionMatrix(getCamera().combined);
 		batch.begin();
@@ -80,39 +73,31 @@ public class ColorsGame extends Game{
 		batch.end();
 		
 		camera.update();
+		
 	}
 	
 	@Override 
 	public void resize(int width, int height){
-		camera.viewportWidth = V_WIDTH;
+		camera.viewportWidth  = V_WIDTH;
 		camera.viewportHeight = V_WIDTH*ASPECT_RATIO;
-		setVHeight((int)camera.viewportHeight);
 	}
 	
 	public SpriteBatch getBatch(){
 		return batch;
 	}
 	
-	public void setBatch(SpriteBatch batch){
-		this.batch = batch;
-	}
-
 	public BoundedCamera getCamera() {
 		return camera;
 	}
 
-	public void setCamera(BoundedCamera camera) {
-		this.camera = camera;
-	}
-	
 	public void setScreen(int key){
 		if(getScreen() != null)
 			getScreen().dispose();
 		
-			super.setScreen(screensMap.get(key));
-			((GameScreen)getScreen()).createAndStartMusic();
-			((GameScreen)getScreen()).activateSpecificActions();
-			Gdx.input.setInputProcessor(screensMap.get(key).getInputHandler());	
+		super.setScreen(screensMap.get(key));
+		((GameScreen)getScreen()).createAndStartMusic();
+		((GameScreen)getScreen()).activateSpecificActions();
+		Gdx.input.setInputProcessor(screensMap.get(key).getInputHandler());	
 	}
 	
 	public void setLevel(int level){
@@ -131,15 +116,8 @@ public class ColorsGame extends Game{
 		return V_HEIGHT;
 	}
 
-	public void setVHeight(float V_HEIGHT) {
-		this.V_HEIGHT = V_HEIGHT;
-	}
-	
 	public float getVWidth() {
 		return V_WIDTH;
 	}
 
-	public void setWidth(float v_WIDTH) {
-		this.V_WIDTH = v_WIDTH;
-	}
 }

@@ -7,14 +7,26 @@ import com.mygdx.colors.states.AnimatedState;
 
 public class AnimatedStateFactory {
 	public static AnimatedState getAnimatedState(GameEntity entity, String stateName, String spritesName, float frameDuration, boolean isLoop){
-		AnimatedState animatedState = new AnimatedState(stateName, entity);
-		animatedState.setStateAnimation(getAnimation(spritesName, frameDuration, isLoop));
+		AnimatedState animatedState = 
+			new AnimatedState(
+				stateName, 
+				entity, 
+				getAnimation(spritesName, frameDuration, isLoop), 
+				isLoop
+			);
+
 		return animatedState;
 	}
 	
 	public static AnimatedState getAnimatedState(GameEntity entity, TextureAtlas textureAtlas, String stateName, String spritesName, float frameDuration, boolean isLoop){
-		AnimatedState animatedState = new AnimatedState(stateName, entity);
-		animatedState.setStateAnimation(getAnimation(textureAtlas, spritesName, frameDuration, isLoop));
+		AnimatedState animatedState = 
+			new AnimatedState(
+				stateName, 
+				entity, 
+				getAnimation(textureAtlas, spritesName, frameDuration, isLoop), 
+				isLoop
+			);
+		
 		return animatedState;
 	}
 	

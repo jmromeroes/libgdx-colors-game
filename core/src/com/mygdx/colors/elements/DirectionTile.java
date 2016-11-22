@@ -13,25 +13,33 @@ import com.mygdx.colors.utils.GeneralInformation;
 public class DirectionTile extends GameEntity{
 	
 	//States information
-	private StaticState onState;
-	private StaticState offState;
+	private final StaticState onState;
+	private final StaticState offState;
 	
 	//Direction information
-	private String direction;
-	
-	private Sound sound;
+	private final String direction;
+	private final Sound sound;
 	
 	public DirectionTile(Cell cell){
-		sound  = Content.getInstance().getSound("jump");
+		super(true);
+        sound  = Content.getInstance().getSound("jump");
 		
 		setColor((String)cell.getTile().getProperties().get("color"));
-		setDirection((String)cell.getTile().getProperties().get("direction"));
+		direction = (String)cell.getTile().getProperties().get("direction");
 		
-		onState = new StaticState(GeneralInformation.ON, this);
-		onState.setSprite(getDirection()+"_"+getColor()+"_"+GeneralInformation.ON);
+		onState = 
+			new StaticState(
+				GeneralInformation.ON, 
+				this, 
+				getDirection()+"_"+getColor()+"_"+GeneralInformation.ON
+			);
 		
-		offState = new StaticState(GeneralInformation.OFF, this);
-		offState.setSprite(getDirection()+"_"+getColor());
+		offState = 
+			new StaticState(
+				GeneralInformation.OFF, 
+				this,
+				getDirection()+"_"+getColor()
+			);
 		
 		try{
 			addEntityState(onState);
@@ -80,9 +88,4 @@ public class DirectionTile extends GameEntity{
 		return direction;
 	}
 
-
-	public void setDirection(String direction) {
-		this.direction = direction;
-	}
-	
 }

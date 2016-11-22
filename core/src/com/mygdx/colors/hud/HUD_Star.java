@@ -14,10 +14,11 @@ public static final String MAIN = "hud_star";
 	private Sound sound;
 	
 	public HUD_Star(){
+		super(false);
 		sound = Content.getInstance().getSound("stars");
 		
-		starState = new StaticState(MAIN,this);
-		starState.setSprite(MAIN);
+		starState = new StaticState(MAIN,this,MAIN);
+
 		try{
 			addEntityState(starState);
 		}catch(ResourceRepeatedInMapException exception){

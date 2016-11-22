@@ -29,6 +29,7 @@ public class ButtonTile extends GameEntity{
 	
 	public ButtonTile(GameScreen gameScreen, TiledButton tiledButton, 
 			          int posXInText, int posYInText, boolean withPointToGo){
+		super(false);
 		this.posXInText = posXInText;
 		this.posYInText = posYInText;
 		
@@ -38,8 +39,8 @@ public class ButtonTile extends GameEntity{
 		
 		Random random = new Random();
 		
-		mainState = new StaticState(MAIN, this);
 		setColor(colorsArray[random.nextInt(4)]);
+		mainState = new StaticState(MAIN, this, "tile_"+getColor()+"_on");
 		
 		float cameraX = gameScreen.getCamera().getPosition().x - gameScreen.getGame().getVWidth()/2;
 		this.withPointToGo = withPointToGo;
@@ -144,8 +145,4 @@ public class ButtonTile extends GameEntity{
 		this.withPointToGo = withPointToGo;
 	}
 	
-	public void setColor(String color){
-		super.setColor(color);
-		mainState.setSprite("tile_"+color+"_on");
-	}
 }

@@ -25,6 +25,7 @@ public class ColorButton extends GameEntity{
 	public static final String NOT_PRESSED = "_button_not_pressed";
 	
 	public ColorButton(HUD hud, String color){
+		super(false);
 		this.hud = hud;
 		
 		setColor(color);
@@ -35,8 +36,7 @@ public class ColorButton extends GameEntity{
 		
 		pressedState = AnimatedStateFactory.getAnimatedState(this, PRESSED, color+PRESSED, 0.05f, false);
 		
-		notPressedState = new StaticState(NOT_PRESSED, this);
-		notPressedState.setSprite(color+PRESSED, 2);
+		notPressedState = new StaticState(NOT_PRESSED, this, color+PRESSED, 2);
 		
 		try{
 			addEntityState(pressedState);

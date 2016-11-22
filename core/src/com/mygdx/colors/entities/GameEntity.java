@@ -12,18 +12,19 @@ import com.mygdx.colors.states.EntityState;
 
 public abstract class GameEntity implements Actionable, Collisionable{
 		
-	private HashMap<String, EntityState> statesMap;
+	private final HashMap<String, EntityState> statesMap;
 	private EntityState currentState;
 	private Vector2 position;
 	private float alpha;
 	private String color;
-	private boolean activableByColor;
+	private final boolean activableByColor;
 	private boolean hidden;
 	private float dx, dy;
 	
-	public GameEntity(){
-		setStates(new HashMap<String, EntityState>());
-		this.activableByColor=false;
+	public GameEntity(boolean activableByColor){
+		statesMap = new HashMap<String, EntityState>();
+		this.activableByColor = false;
+		this.color = color;
 		this.alpha = 1;
 	}
 	
@@ -53,10 +54,6 @@ public abstract class GameEntity implements Actionable, Collisionable{
 	
 	public HashMap<String, EntityState> getStates() {
 		return statesMap;
-	}
-
-	public void setStates(HashMap<String, EntityState> statesMap) {
-		this.statesMap = statesMap;
 	}
 
 	public EntityState getCurrentState() {
@@ -127,10 +124,6 @@ public abstract class GameEntity implements Actionable, Collisionable{
 	
 	public boolean isActivableByColor() {
 		return activableByColor;
-	}
-
-	public void setActivableByColor(boolean activableByColor) {
-		this.activableByColor = activableByColor;
 	}
 
 	@Override
