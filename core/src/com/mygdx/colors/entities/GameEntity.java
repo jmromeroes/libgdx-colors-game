@@ -23,7 +23,7 @@ public abstract class GameEntity implements Actionable, Collisionable{
 	
 	public GameEntity(boolean activableByColor){
 		statesMap = new HashMap<String, EntityState>();
-		this.activableByColor = false;
+		this.activableByColor = activableByColor;
 		this.color = color;
 		this.alpha = 1;
 	}
