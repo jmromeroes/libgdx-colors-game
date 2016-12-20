@@ -109,7 +109,4 @@ public class Teletransporter extends GameEntity{
 		return direction;
 	}
 
-	public void setDirection(String direction) {
-		this.direction = direction;
-	}
 }

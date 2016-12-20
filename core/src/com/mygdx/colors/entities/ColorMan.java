@@ -121,7 +121,7 @@ public class ColorMan extends GameEntity implements Gravitational{
 		
 		walkingRightState = AnimatedStateFactory.getAnimatedState(this, WALK_RIGHT, WALK_RIGHT, 0.075f, true);
 		
-		restingRightState = new StaticState(REST_RIGHT, this, REST_RIGHT,1);
+		restingRightState = new StaticState(REST_RIGHT, this, REST_RIGHT, 1);
 		hurtRightState    = new StaticState(HURT_RIGHT, this, HURT_RIGHT);
 		frontState        = new StaticState(FRONT, this, FRONT);
 		jumpingLeftState  = new StaticState(JUMP_LEFT, this, JUMP_LEFT);

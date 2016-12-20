@@ -35,7 +35,6 @@ public class HillEnemy extends GameEntity{
 		this.speed = 5f;
 		
 		mainState = new StaticState(MAIN, this, MAIN);
-		mainState.setSprite();
 		
 		goingDown = false;
 		goingUp = false;

@@ -26,7 +26,7 @@ public class Background {
 		this.gameScreen = gameScreen;
 		this.backgroundImage = Content.getInstance().getTexture(textureName);
 		this.width = gameScreen.getGame().getVWidth()+100;
-		this.height = gameScreen.getGame().getVWidth()+100;
+		this.height = gameScreen.getGame().getVHeight()+100;
 		this.movementScale = movementScale;
 		this.goingRight = false;
 	}

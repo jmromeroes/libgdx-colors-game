@@ -41,17 +41,17 @@ public class ColorsGame extends Game {
 		
 		batch = new SpriteBatch();
 		soundEnabled = true;
-        
+        		
+		ASPECT_RATIO   = (float)Gdx.graphics.getHeight()/Gdx.graphics.getWidth();
+		V_WIDTH        = 1350F;
+		V_HEIGHT       = V_WIDTH * ASPECT_RATIO;
+		
 		//Screen creation
 		preloadScreen        = new PreloadScreen(this);
 		menuScreen           = new MenuScreen(this);
 		playScreen           = new PlayScreen(this);
 		levelSelectionScreen = new LevelSelectionScreen(this);
-		
-		ASPECT_RATIO   = (float)Gdx.graphics.getHeight()/Gdx.graphics.getWidth();
-		V_WIDTH        = 1350F;
-		V_HEIGHT = V_WIDTH*ASPECT_RATIO;
-		
+
 		//We add screens to screen map
 		screensMap.put(PRELOAD_SCREEN, preloadScreen);
 		screensMap.put(GAME_SCREEN, playScreen);
@@ -79,7 +79,7 @@ public class ColorsGame extends Game {
 	@Override 
 	public void resize(int width, int height){
 		camera.viewportWidth  = V_WIDTH;
-		camera.viewportHeight = V_WIDTH*ASPECT_RATIO;
+		camera.viewportHeight = V_HEIGHT;
 	}
 	
 	public SpriteBatch getBatch(){
